@@ -9,6 +9,5 @@ torch
 torchvision
 torchaudio
 tensorboard
-pytorch3d
 pylsd-nova
 tqdm
