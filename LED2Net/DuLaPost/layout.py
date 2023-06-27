@@ -75,7 +75,7 @@ def fit_layout(data, max_cor=12):
     data_thresh = np.uint8(data_thresh)
     #data_img, data_cnt, data_heri = cv2.findContours(data_thresh, 1, 2)
     data_cnt, data_heri = cv2.findContours(data_thresh, 1, 2)
-    data_cnt.sort(key=lambda x: cv2.contourArea(x), reverse=True)
+    data_cnt = sorted(data_cnt, key=lambda x: cv2.contourArea(x), reverse=True)
 
     sub_x, sub_y, w, h = cv2.boundingRect(data_cnt[0])
     data_sub = data_thresh[sub_y:sub_y+h,sub_x:sub_x+w]
@@ -83,7 +83,7 @@ def fit_layout(data, max_cor=12):
 
     #data_img, data_cnt, data_heri = cv2.findContours(data_sub, 1, 2)
     data_cnt, data_heri = cv2.findContours(data_sub, 1, 2)
-    data_cnt.sort(key=lambda x: cv2.contourArea(x), reverse=True)
+    data_cnt = sorted(data_cnt, key=lambda x: cv2.contourArea(x), reverse=True)
     data_cnt = data_cnt[0]
     epsilon = 0.005*cv2.arcLength(data_cnt,True)
     approx = cv2.approxPolyDP(data_cnt, epsilon,True)
